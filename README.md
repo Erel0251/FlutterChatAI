@@ -16,9 +16,22 @@ Add Packages:
 flutter pub add
 ```
 
+## Usage
+
+- create api key at [open API key](https://platform.openai.com/api-keys)
+- create file `.env` on root repository
+- add `OPEN_AI_API_KEY=sk-<Your api key>`
+- run your flutter app an it will show main chat screen
+    ![Image](./assets/empty_chat.png)
+
 ## Images
 
-
+- [x] Normal chat & reponse
+    ![First message](./assets/first_question.png)
+- [x] Stored multiple chats
+    ![Left panel](./assets/left_panel.png)
+- [x] Remember conversation
+    ![Check old message](./assets/check_old_message.png)
 
 ## Contributing
 

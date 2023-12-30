@@ -99,20 +99,23 @@ class _ChatScreenState extends State<ChatScreen> {
       // if index % 2 == 0 then it's user message
       // else it's agent message
       for (int index = 0; index < currentChat.length; index++) {
-        types.Message msg;
-        if (index % 2 == 0) {
-          msg = types.TextMessage(
-            author: _user,
-            id: index.toString(),
-            text: currentChat[index],
-          );
-        } else {
-          msg = types.TextMessage(
-            author: _agent,
-            id: index.toString(),
-            text: currentChat[index],
-          );
-        }
+        final types.Message msg = types.TextMessage(
+          author: index % 2 == 0 ? _user : _agent,
+          id: index.toString(),
+          text: currentChat[index],
+        );
+
+        final userMessage = OpenAIChatCompletionChoiceMessageModel(
+          role: index % 2 == 0
+              ? OpenAIChatMessageRole.user
+              : OpenAIChatMessageRole.assistant,
+          content: [
+            OpenAIChatCompletionChoiceMessageContentItemModel.text(
+                currentChat[index])
+          ],
+        );
+
+        _historychat.add(userMessage);
         _messages.insert(0, msg);
       }
     }

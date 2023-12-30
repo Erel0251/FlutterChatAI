@@ -28,7 +28,6 @@ class _HistorySectionScreenState extends State<HistorySectionScreen> {
   Widget _buildBody() {
     return Column(
       children: [
-        _title(),
         _historyList(),
         _newChatSection(),
       ],
@@ -66,29 +65,15 @@ class _HistorySectionScreenState extends State<HistorySectionScreen> {
     );
   }
 
-  Widget _title() {
-    return DrawerHeader(
-      //color
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 82, 92, 231),
-      ),
-      child: Center(
-        child: Text(
-          'Chat History',
-          style: Theme.of(context).textTheme.headlineMedium,
-        ),
-      ),
-    );
-  }
-
   // listItem that is a button contains first message of the chat
   // and the delete listItem button float to the right
   Widget _historyListItem(String firstMessage, int index) {
     return Container(
-      margin: const EdgeInsets.all(5),
+      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
       decoration: BoxDecoration(
         color: Color.fromARGB(255, 191, 207, 231),
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(10),
         border: Border.all(
           // color: Color.fromARGB(255, 191, 207, 231),
           color: Color.fromARGB(255, 248, 237, 255),
@@ -185,6 +170,51 @@ class _HistorySectionScreenState extends State<HistorySectionScreen> {
   }
 
   // open new chat screen with no data
+  // using decoration to make it look like a Elevated button
+  Widget _newChatButton() {
+    return GestureDetector(
+      onTap: () async {
+        // _chatController.changeTopic(null);
+        // store chosen topic to shared preferences
+        // so that it can be used in chat screen
+        /*
+          _prefs.then((SharedPreferences prefs) {
+            prefs.remove('topic');
+          });
+          */
+
+        await _prefs.then((SharedPreferences prefs) {
+          prefs.remove('topic');
+        });
+
+        // reload the chat screen to make sure the list is updated
+        Future.delayed(const Duration(milliseconds: 0), () {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const ChatScreen(),
+              ),
+              (route) => false);
+        });
+      },
+      child: Container(
+        margin: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 191, 207, 231),
+          borderRadius: BorderRadius.circular(25),
+          border: Border.all(
+            // color: Color.fromARGB(255, 191, 207, 231),
+            color: Colors.black12,
+            width: 1,
+          ),
+        ),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+        child: const Text('New Chat'),
+      ),
+    );
+  }
+
+  /*
   Widget _newChatButton() {
     return ElevatedButton(
       onPressed: () async {
@@ -214,4 +244,5 @@ class _HistorySectionScreenState extends State<HistorySectionScreen> {
       child: const Text('New Chat'),
     );
   }
+  */
 }
