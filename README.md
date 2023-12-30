@@ -1,16 +1,32 @@
-# template
+# Flutter Chat AI
 
-A new Flutter project.
+Flutter Chat AI is a minor Project to create a mobile app to represent ChatGPT, using OpenAI API
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Flutter application.
+Clone the repository:
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+git clone https://github.com/Erel0251/FlutterChatAI.git
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Add Packages:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter pub add
+```
+
+## Images
+
+
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first
+to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
