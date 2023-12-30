@@ -125,7 +125,11 @@ class _HistorySectionScreenState extends State<HistorySectionScreen> {
             Expanded(
               child: Container(
                 padding: const EdgeInsets.all(5),
-                child: Text(firstMessage),
+                // if it's longer than tab, it will be cutjust like the tab
+                child: Text(
+                  firstMessage,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ),
             _historyListItemDeleteButton(index),
